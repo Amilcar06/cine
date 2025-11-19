@@ -696,6 +696,21 @@ body::before {
     box-shadow: 0 4px 12px var(--shadow-glow);
 }
 
+.ticket-card-link.highlight-link {
+    background: linear-gradient(135deg, var(--gold), var(--accent));
+    border-color: var(--gold);
+    color: var(--bg);
+    font-weight: 600;
+    box-shadow: 0 0 20px rgba(212, 161, 74, 0.4);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.ticket-card-link.highlight-link:hover {
+    background: linear-gradient(135deg, var(--accent), var(--gold));
+    box-shadow: 0 0 30px rgba(212, 161, 74, 0.6);
+    transform: translateY(-3px) scale(1.05);
+}
+
 .no-tickets-message {
     text-align: center;
     color: var(--muted);
@@ -965,11 +980,33 @@ body::before {
     text-decoration: none;
     transition: var(--transition);
     font-size: 0.95rem;
+    display: inline-block;
+    padding: 0.3rem 0.5rem;
+    border-radius: 6px;
 }
 
 .ticket-link:hover {
     color: var(--gold);
     text-decoration: underline;
+    background: rgba(212, 161, 74, 0.1);
+}
+
+/* Link destacado (canción especial) */
+.ticket-link.highlight-link {
+    background: linear-gradient(135deg, rgba(212, 161, 74, 0.2), rgba(198, 40, 40, 0.2));
+    color: var(--gold);
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 15px rgba(212, 161, 74, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.ticket-link.highlight-link:hover {
+    background: linear-gradient(135deg, rgba(212, 161, 74, 0.3), rgba(198, 40, 40, 0.3));
+    box-shadow: 0 0 25px rgba(212, 161, 74, 0.5);
+    transform: translateY(-2px);
+    text-decoration: none;
 }
 
 .ticket-message {

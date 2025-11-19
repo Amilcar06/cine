@@ -7,7 +7,12 @@ const MOVIES = {
         title: 'Drácula',
         year: '2025',
         meetLink: 'https://discord.gg/aB5YBMgB', // REEMPLAZAR CON LINK REAL
-        songLink: 'https://youtu.be/rigubwkGxdw',
+        specialLink: {
+            type: 'song', // 'song', 'tiktok', 'message', 'photo', 'video'
+            url: 'https://youtu.be/rigubwkGxdw', // REEMPLAZAR CON CANCIÓN REAL
+            label: '🎵 Canción especial',
+            highlight: true // Esta es la que resalta
+        },
         question: '¿Cuál es mi jugador favorito?',
         answer: 'Raphinha'
     },
@@ -16,7 +21,12 @@ const MOVIES = {
         title: 'Titanes del Pacífico',
         year: '2013',
         meetLink: 'https://discord.gg/aB5YBMgB', // REEMPLAZAR CON LINK REAL
-        songLink: 'https://youtu.be/TKjOk-i-XkI',
+        specialLink: {
+            type: 'tiktok', // 'song', 'tiktok', 'message', 'photo', 'video'
+            url: 'https://vm.tiktok.com/ZMA36bNQf/', // REEMPLAZAR CON TIKTOK REAL
+            label: '📱 TikTok especial',
+            highlight: false
+        },
         question: '¿Cuál es mi equipo favorito?',
         answer: 'Barcelona'
     }
@@ -349,8 +359,15 @@ function generateTicket(movie) {
     if (meetLinkEl) {
         meetLinkEl.href = movie.meetLink;
     }
-    if (songLinkEl) {
-        songLinkEl.href = movie.songLink;
+    if (songLinkEl && movie.specialLink) {
+        songLinkEl.href = movie.specialLink.url;
+        songLinkEl.textContent = movie.specialLink.label;
+        // Destacar la canción si es highlight
+        if (movie.specialLink.highlight) {
+            songLinkEl.classList.add('highlight-link');
+        } else {
+            songLinkEl.classList.remove('highlight-link');
+        }
     }
 
     // Resetear estado del ticket
@@ -755,8 +772,8 @@ function addTicketToMyTickets(movie) {
                 <span>En casa (Meet)</span>
             </div>
             <div class="ticket-card-actions">
-                <a href="${movie.meetLink}" target="_blank" rel="noopener noreferrer" class="ticket-card-link">🔗 Unirse a Meet</a>
-                <a href="${movie.songLink}" target="_blank" rel="noopener noreferrer" class="ticket-card-link">🎧 Canción especial</a>
+                <a href="${movie.meetLink}" target="_blank" rel="noopener noreferrer" class="ticket-card-link">🔗 Unirse a Discord</a>
+                <a href="${movie.specialLink ? movie.specialLink.url : '#'}" target="_blank" rel="noopener noreferrer" class="ticket-card-link ${movie.specialLink && movie.specialLink.highlight ? 'highlight-link' : ''}">${movie.specialLink ? movie.specialLink.label : '🎵 Link especial'}</a>
             </div>
         </div>
     `;
