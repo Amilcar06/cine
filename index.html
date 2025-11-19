@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Invitación especial a una función de cine romántica">
+    <meta name="theme-color" content="#0b0b0d">
+    <meta property="og:title" content="Función Especial - Cartelera Romántica">
+    <meta property="og:description" content="Una invitación especial para una función de cine única">
+    <meta property="og:type" content="website">
+    <title>Función Especial - Cartelera Romántica</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+    <!-- Google Fonts - Tipografía elegante -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/animations.css">
+</head>
+<body>
+    <!-- Pantalla 1: Introducción Cinematográfica -->
+    <section id="splash-screen" class="splash-screen active">
+        <div class="splash-overlay"></div>
+        <div class="splash-content">
+            <h1 class="splash-title">
+                <span class="line">Hoy quiero invitarte</span>
+                <span class="line">a una función especial.</span>
+                <span class="line highlight">No es una película cualquiera.</span>
+                <span class="line">Es nuestra historia...</span>
+                <span class="line">y empieza aquí.</span>
+            </h1>
+            <button id="enter-btn" class="btn-primary">Entrar</button>
+        </div>
+    </section>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <span class="logo-icon">🎬</span>
+                <span class="logo-text">Función Especial</span>
+            </div>
+            <div class="navbar-menu">
+                <button class="nav-link active" data-section="movies" id="nav-movies">
+                    <span class="nav-icon">🎞️</span>
+                    <span class="nav-text">Películas</span>
+                </button>
+                <button class="nav-link" data-section="tickets" id="nav-tickets">
+                    <span class="nav-icon">🎟️</span>
+                    <span class="nav-text">Mis Tickets</span>
+                    <span class="nav-badge" id="tickets-badge" style="display: none;">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Pantalla 2: Cartelera -->
+    <main id="main-content" class="main-content" data-section="movies">
+        <header class="cinema-header">
+            <div class="cinema-header-content">
+                <div class="logo-container">
+                    <span class="logo-icon">🎬</span>
+                    <div class="logo-text-container">
+                        <h2 class="cinema-title">Función Especial</h2>
+                        <div class="title-underline"></div>
+                    </div>
+                </div>
+                <p class="subtitle">
+                    <span class="subtitle-icon">💖</span>
+                    <span class="subtitle-text">Tickets disponibles</span>
+                </p>
+            </div>
+        </header>
+
+        <section class="poster-gallery">
+            <!-- Película 1: Drácula -->
+            <article class="movie-card" data-movie="dracula">
+                <div class="poster-container">
+                    <img src="assets/posters/dracula.jpg" alt="Póster Drácula 2025" class="poster" loading="lazy">
+                    <div class="poster-overlay"></div>
+                </div>
+                <div class="movie-info">
+                    <h3 class="movie-title">Drácula</h3>
+                    <p class="movie-year">2025</p>
+                    <p class="movie-synopsis">Una reimaginación épica del clásico de Bram Stoker dirigida por Luc Besson. Una historia de amor, venganza y redención que trasciende el tiempo.</p>
+                    <button class="btn-ticket" data-movie="dracula" data-question="¿Cuál es mi jugador favorito?" data-answer="Raphinha">
+                        Obtener Ticket
+                    </button>
+                </div>
+            </article>
+
+            <!-- Película 2: Titanes del Pacífico -->
+            <article class="movie-card" data-movie="pacificrim">
+                <div class="poster-container">
+                    <img src="assets/posters/titanes.jpg" alt="Póster Titanes del Pacífico" class="poster" loading="lazy">
+                    <div class="poster-overlay"></div>
+                </div>
+                <div class="movie-info">
+                    <h3 class="movie-title">Titanes del Pacífico</h3>
+                    <p class="movie-year">2013</p>
+                    <p class="movie-synopsis">La película favorita que siempre quise compartir contigo. Una épica batalla entre gigantes robots y monstruos que representa la unión y el trabajo en equipo.</p>
+                    <button class="btn-ticket" data-movie="pacificrim" data-question="¿Cuál es mi equipo favorito?" data-answer="Barcelona">
+                        Obtener Ticket
+                    </button>
+                </div>
+            </article>
+        </section>
+
+        <!-- Botón para mini-juego sorpresa -->
+        <div class="surprise-section">
+            <button id="surprise-btn" class="btn-surprise">✨ Descubre una sorpresa</button>
+        </div>
+    </main>
+
+    <!-- Sección Mis Tickets (Carrito) -->
+    <section id="my-tickets-section" class="my-tickets-section" aria-hidden="true" data-section="tickets">
+        <div class="tickets-header">
+            <h2>Mis Tickets</h2>
+            <button id="close-tickets-btn" class="btn-close-tickets" aria-label="Cerrar">×</button>
+        </div>
+        <div id="tickets-list" class="tickets-list">
+            <p class="no-tickets-message">Aún no has obtenido ningún ticket. ¡Obtén tus tickets desde la cartelera! 🎬</p>
+        </div>
+    </section>
+
+    <!-- Modal: Captcha Romántico -->
+    <div id="captcha-modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Cerrar modal">&times;</button>
+            <h3 id="modal-title" class="modal-title">Responde para obtener tu ticket</h3>
+            <p class="modal-subtitle">Si fallas, un mensajito tierno aparecerá 🥺</p>
+            <div class="captcha-question">
+                <p id="question-text" class="question-text"></p>
+                <input type="text" id="captcha-answer" class="captcha-input" placeholder="Tu respuesta..." autocomplete="off">
+                <p id="captcha-message" class="captcha-message" aria-live="polite"></p>
+            </div>
+            <div class="modal-actions">
+                <button id="confirm-btn" class="btn-confirm">Confirmar</button>
+                <button class="btn-cancel">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ticket Generado -->
+    <div id="ticket-container" class="ticket-container" aria-hidden="true">
+        <div class="ticket" id="ticket">
+            <div class="ticket-front">
+                <div class="ticket-header">
+                    <span class="ticket-icon">🎟️</span>
+                    <h3 id="ticket-movie-title" class="ticket-title"></h3>
+                </div>
+                <div class="ticket-details">
+                    <div class="ticket-row">
+                        <span class="ticket-label">🕒 Hora:</span>
+                        <span class="ticket-value">9:30 PM</span>
+                    </div>
+                    <div class="ticket-row">
+                        <span class="ticket-label">📍 Lugar:</span>
+                        <span class="ticket-value">En casa (Meet)</span>
+                    </div>
+                    <div class="ticket-row">
+                        <a id="ticket-meet-link" href="#" target="_blank" rel="noopener noreferrer" class="ticket-link">🔗 Unirse a Meet</a>
+                    </div>
+                    <div class="ticket-row">
+                        <a id="ticket-song-link" href="#" target="_blank" rel="noopener noreferrer" class="ticket-link">🎧 Canción especial</a>
+                    </div>
+                    <div class="ticket-message">
+                        <p>Este ticket es solo para ti ❤️</p>
+                    </div>
+                </div>
+                <button id="flip-ticket-btn" class="btn-flip">Voltear ticket</button>
+                <button id="close-ticket-btn" class="btn-close-ticket">Cerrar</button>
+            </div>
+            <div class="ticket-back">
+                <div class="ticket-secret-message">
+                    <p>"Gracias por compartir este momento conmigo.</p>
+                    <p>Quiero que esta salida sea especial porque tú lo eres para mí."</p>
+                </div>
+                <button id="flip-back-btn" class="btn-flip">Volver</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mini-Juego: Estrellas (Constelación) -->
+    <div id="stars-game" class="stars-game" aria-hidden="true">
+        <button id="close-stars-game" class="close-stars-btn" aria-label="Cerrar mini-juego">&times;</button>
+        <div class="constellation-header">
+            <h3 class="constellation-title">🌟 Revela la Constelación</h3>
+            <p class="constellation-subtitle">Cada estrella revela una parte del mensaje</p>
+        </div>
+        <div class="stars-container">
+            <div class="star" data-star="0">⭐</div>
+            <div class="star" data-star="1">⭐</div>
+            <div class="star" data-star="2">⭐</div>
+            <div class="star" data-star="3">⭐</div>
+            <div class="star" data-star="4">⭐</div>
+        </div>
+        <div id="star-message" class="star-message" aria-live="polite">
+            <div id="constellation-progress" class="constellation-progress"></div>
+        </div>
+        
+        <!-- Animación Final (oculta hasta completar) -->
+        <div id="constellation-complete" class="constellation-complete" aria-hidden="true">
+            <div class="complete-animation">
+                <div class="sparkles">✨✨✨</div>
+                <h3 class="complete-title">Constelación Completa</h3>
+                <div class="complete-message" id="complete-message"></div>
+                <div class="complete-actions">
+                    <a href="#" id="surprise-song-btn" target="_blank" rel="noopener noreferrer" class="btn-surprise-song">
+                        🎵 Reproducir canción sorpresa final
+                    </a>
+                    <p class="complete-thanks">💌 Gracias por estar aquí conmigo.</p>
+                </div>
+            </div>
+        </div>
+        
+        <button id="back-to-cartelera" class="btn-back">Volver a cartelera</button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Hecho con ❤️ para una función especial</p>
+            <button id="mute-btn" class="btn-mute" aria-label="Silenciar sonidos">🔊</button>
+        </div>
+    </footer>
+
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+</html>
+
