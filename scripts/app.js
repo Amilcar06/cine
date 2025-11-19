@@ -6,7 +6,7 @@ const MOVIES = {
         id: 'dracula',
         title: 'Drácula',
         year: '2025',
-        meetLink: 'https://meet.google.com/xyz-1234-abc', // REEMPLAZAR CON LINK REAL
+        meetLink: 'https://discord.gg/aB5YBMgB', // REEMPLAZAR CON LINK REAL
         songLink: 'https://youtu.be/rigubwkGxdw',
         question: '¿Cuál es mi jugador favorito?',
         answer: 'Raphinha'
@@ -15,7 +15,7 @@ const MOVIES = {
         id: 'pacificrim',
         title: 'Titanes del Pacífico',
         year: '2013',
-        meetLink: 'https://meet.google.com/xyz-1234-abc', // REEMPLAZAR CON LINK REAL
+        meetLink: 'https://discord.gg/aB5YBMgB', // REEMPLAZAR CON LINK REAL
         songLink: 'https://youtu.be/TKjOk-i-XkI',
         question: '¿Cuál es mi equipo favorito?',
         answer: 'Barcelona'
