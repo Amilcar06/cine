@@ -9,7 +9,7 @@ const MOVIES = {
         meetLink: 'https://discord.gg/aB5YBMgB', // REEMPLAZAR CON LINK REAL
         specialLink: {
             type: 'song', // 'song', 'tiktok', 'message', 'photo', 'video'
-            url: 'https://youtu.be/rigubwkGxdw', // REEMPLAZAR CON CANCIÓN REAL
+            url: 'https://youtu.be/TKjOk-i-XkI', // REEMPLAZAR CON CANCIÓN REAL
             label: '🎵 Canción especial',
             highlight: true // Esta es la que resalta
         },
@@ -590,7 +590,7 @@ function revealStarMessage(starIndex, messageEl) {
 function showConstellationComplete() {
     const completeEl = document.getElementById('constellation-complete');
     const completeMessageEl = document.getElementById('complete-message');
-    const songBtn = document.getElementById('surprise-song-btn');
+    const downloadBtn = document.getElementById('download-photo-btn');
     
     if (!completeEl) return;
     
@@ -600,9 +600,9 @@ function showConstellationComplete() {
         completeMessageEl.textContent = fullMessage;
     }
     
-    // Configurar botón de canción
-    if (songBtn) {
-        songBtn.href = SURPRISE_SONG;
+    // Configurar botón de descarga
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', downloadSurprisePhoto);
     }
     
     // Mostrar animación final
@@ -619,6 +619,25 @@ function showConstellationComplete() {
         completeEl.style.opacity = '1';
         completeEl.style.transform = 'scale(1)';
     }, 100);
+}
+
+function downloadSurprisePhoto() {
+    const photo = document.getElementById('surprise-photo');
+    if (!photo) return;
+    
+    // Crear un elemento <a> temporal para descargar
+    const link = document.createElement('a');
+    link.href = photo.src;
+    link.download = 'foto-especial.jpeg'; // Nombre del archivo descargado
+    link.target = '_blank';
+    
+    // Agregar al DOM, hacer clic y remover
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Mostrar confirmación
+    showMessage('📸 Foto descargada con éxito', 'success');
 }
 
 // Control de sonido
