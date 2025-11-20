@@ -911,9 +911,10 @@ body::before {
     transform: rotateY(180deg);
 }
 
-.ticket-front,
-.ticket-back {
+.ticket-front {
     backface-visibility: hidden;
+    position: relative;
+    z-index: 2;
 }
 
 .ticket-back {
@@ -928,6 +929,10 @@ body::before {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(135deg, #1a1a1d 0%, var(--card) 100%);
+    border-radius: var(--border-radius);
+    backface-visibility: hidden;
+    z-index: 1;
 }
 
 .ticket-header {
@@ -1028,10 +1033,16 @@ body::before {
     font-size: 1.1rem;
     line-height: 1.8;
     font-style: italic;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--glass);
+    margin-bottom: 2rem;
 }
 
 .ticket-secret-message p {
     margin-bottom: 1rem;
+    color: var(--gold);
 }
 
 .btn-flip {
